@@ -1,4 +1,6 @@
-import 'package:agro_app/features/disease/disease_screen.dart';
+import 'package:agro_app/controllers/crop_controller.dart';
+import 'package:agro_app/features/crops/crop_detail_screen.dart';
+import 'package:agro_app/features/disease_alert/disease_aert_screen.dart';
 import 'package:agro_app/features/firtilizer/firtilizer_screen.dart';
 import 'package:agro_app/features/home/wigets/action_card.dart';
 import 'package:agro_app/features/home/wigets/crausel_widgets.dart';
@@ -11,22 +13,14 @@ import 'package:get/get.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final List<Map<String, String>> sampleCrops = [
-    {
-      "name": "Wheat",
-      "image": "https://picsum.photos/200?1"
-    },
-    {
-      "name": "Rice",
-      "image": "https://picsum.photos/200?2"
-    }
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
+    final CropController controller = Get.put(CropController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("🌱 GrowWithMe"),
+        title: const Text("🌱 AgrowWithMe"),
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
@@ -76,10 +70,10 @@ ActionCard(
 ActionCard(
   icon: Icons.bug_report,
   title: "Disease & Pests",
-  subtitle: "Identify crop problems",
+  subtitle: "Some Common disease",
   color: Colors.red,
   onTap: () {
-    Get.to(() => const DiseaseScreen());
+    Get.to(() => const DiseaseAlertScreen());
   },
 ),
 
@@ -98,35 +92,63 @@ ActionCard(
 
                   const SizedBox(height: 10),
 
-                  SizedBox(
-                    height: 120,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: sampleCrops.length,
-                      itemBuilder: (context, index) {
-                        final crop = sampleCrops[index];
+            
 
-                        return Container(
-                          width: 100,
-                          margin: const EdgeInsets.only(right: 10),
-                          child: Column(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  crop['image']!,
-                                  height: 80,
-                                  width: 100,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Text(crop['name']!)
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  )
+                  Obx(() {
+  final crops = controller.crops.take(8).toList(); // 👈 only 8 items
+
+  if (crops.isEmpty) {
+    return const Center(child: CircularProgressIndicator());
+  }
+
+  return SizedBox(
+    height: 120,
+    child: ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: crops.length,
+      itemBuilder: (context, index) {
+        final crop = crops[index];
+
+        return GestureDetector(
+          onTap: () {
+  Get.to(() => CropDetailScreen(),arguments: crop);
+},
+          child: Container(
+            
+          
+          
+          
+          
+            width: 100,
+            margin: const EdgeInsets.only(right: 10),
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    crop.imageUrl, // 👈 Firestore field
+                    height: 80,
+                    width: 100,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Icon(Icons.image, size: 50),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  crop.name,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    ),
+  );
+})
+               
+               
                 ],
               ),
             )
