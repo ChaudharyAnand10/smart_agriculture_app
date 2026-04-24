@@ -226,4 +226,95 @@ class DummyData {
       "searchKeywords": ["bajra"]
     },
   ];
+
+
+
+
+
+  static final List<Map<String, dynamic>> data = [
+  {
+    "name": "Urea",
+    "composition": "46% Nitrogen",
+    "suitableCrops": ["Wheat", "Rice", "Maize"],
+    "description": "Boosts leaf growth and green color"
+  },
+  {
+    "name": "DAP",
+    "composition": "18% Nitrogen, 46% Phosphorus",
+    "suitableCrops": ["Wheat", "Sugarcane", "Rice"],
+    "description": "Helps root development and early growth"
+  },
+  {
+    "name": "NPK 20-20-20",
+    "composition": "Balanced NPK",
+    "suitableCrops": ["Vegetables", "Fruits"],
+    "description": "Complete fertilizer for all growth stages"
+  },
+  {
+    "name": "Potash",
+    "composition": "60% Potassium",
+    "suitableCrops": ["Potato", "Tomato"],
+    "description": "Improves crop quality and disease resistance"
+  },
+  {
+    "name": "Ammonium Sulphate",
+    "composition": "21% Nitrogen, 24% Sulfur",
+    "suitableCrops": ["Rice", "Wheat"],
+    "description": "Good for sulfur-deficient soil"
+  },
+
+  // 🔥 NEW DATA START
+
+  {
+    "name": "Single Super Phosphate (SSP)",
+    "composition": "16% Phosphorus, 11% Sulfur",
+    "suitableCrops": ["Pulses", "Oilseeds"],
+    "description": "Improves root growth and increases yield"
+  },
+  {
+    "name": "Zinc Sulphate",
+    "composition": "21% Zinc",
+    "suitableCrops": ["Rice", "Wheat", "Maize"],
+    "description": "Corrects zinc deficiency and improves plant health"
+  },
+  {
+    "name": "Calcium Ammonium Nitrate (CAN)",
+    "composition": "26% Nitrogen, Calcium",
+    "suitableCrops": ["Vegetables", "Fruits"],
+    "description": "Enhances soil fertility and plant strength"
+  },
+  {
+    "name": "NPK 10-26-26",
+    "composition": "Low Nitrogen, High Phosphorus & Potassium",
+    "suitableCrops": ["Wheat", "Rice"],
+    "description": "Promotes flowering and fruiting"
+  },
+  {
+    "name": "NPK 12-32-16",
+    "composition": "Balanced for early growth",
+    "suitableCrops": ["Sugarcane", "Maize"],
+    "description": "Supports strong root and shoot development"
+  },
+  {
+    "name": "Organic Compost",
+    "composition": "Natural nutrients",
+    "suitableCrops": ["All crops"],
+    "description": "Improves soil structure and microbial activity"
+  },
+  {
+    "name": "Vermicompost",
+    "composition": "Organic nutrients from earthworms",
+    "suitableCrops": ["Vegetables", "Fruits"],
+    "description": "Enhances soil fertility and plant growth naturally"
+  },
+  {
+    "name": "Bone Meal",
+    "composition": "High Phosphorus",
+    "suitableCrops": ["Flowers", "Fruits"],
+    "description": "Encourages strong root and flower development"
+  },
+];
+
+ 
+
 }

@@ -2,7 +2,6 @@ import 'package:agro_app/features/disease/disease_screen.dart';
 import 'package:agro_app/features/firtilizer/firtilizer_screen.dart';
 import 'package:agro_app/features/home/wigets/action_card.dart';
 import 'package:agro_app/features/home/wigets/crausel_widgets.dart';
-import 'package:agro_app/features/home/wigets/weather_card.dart';
 import 'package:agro_app/features/market/market_screen.dart';
 import 'package:agro_app/features/wheather/wheather_screen.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +58,7 @@ ActionCard(
   subtitle: "Check latest mandi rates",
   color: Colors.orange,
   onTap: () {
-    Get.to(() => const MarketScreen());
+    Get.to(() =>  MarketScreen());
   },
 ),
 
@@ -70,7 +69,7 @@ ActionCard(
   subtitle: "Check weather updates",
   color: Colors.blue,
   onTap: () {
-    Get.to(() => const WeatherScreen());
+    Get.to(() =>  WeatherScreen());
   },
 ),
 

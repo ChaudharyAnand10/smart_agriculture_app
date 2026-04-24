@@ -1,76 +1,36 @@
+import 'package:agro_app/features/wheather/wheather_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'widgets/weather_card_ui.dart';
 
 class WeatherScreen extends StatelessWidget {
-  const WeatherScreen({super.key});
+  WeatherScreen({super.key});
+
+  final controller = Get.put(WeatherController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("🌦 Weather"),
-      ),
+      appBar: AppBar(title: const Text("🌦 Weather")),
 
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 🌍 Location
-            const Text(
-              "Babhnauli, UP",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        }
 
-            const SizedBox(height: 10),
+        if (controller.error.isNotEmpty) {
+          return Center(child: Text(controller.error.value));
+        }
 
-            // 🌡 Temperature Card
-            Card(
-              elevation: 4,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: const [
-                    Icon(Icons.wb_sunny, size: 50, color: Colors.orange),
-                    SizedBox(height: 10),
-                    Text(
-                      "30°C",
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text("Sunny"),
-                  ],
-                ),
-              ),
-            ),
+        if (controller.weather.value != null) {
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: WeatherCardUI(data: controller.weather.value!),
+          );
+        }
 
-            const SizedBox(height: 20),
-
-            // 📊 Extra Info
-            Card(
-              child: Column(
-                children: const [
-                  ListTile(
-                    leading: Icon(Icons.water_drop),
-                    title: Text("Humidity"),
-                    trailing: Text("60%"),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.air),
-                    title: Text("Wind Speed"),
-                    trailing: Text("12 km/h"),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+        return const Center(child: Text("No Data"));
+      }),
     );
   }
 }
