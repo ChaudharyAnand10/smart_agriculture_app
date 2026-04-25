@@ -1,10 +1,12 @@
 import 'package:agro_app/controllers/crop_controller.dart';
+import 'package:agro_app/features/community_discussion/all_discusions.dart';
 import 'package:agro_app/features/crops/crop_detail_screen.dart';
 import 'package:agro_app/features/disease_alert/disease_aert_screen.dart';
 import 'package:agro_app/features/firtilizer/firtilizer_screen.dart';
 import 'package:agro_app/features/home/wigets/action_card.dart';
 import 'package:agro_app/features/home/wigets/crausel_widgets.dart';
 import 'package:agro_app/features/market/market_screen.dart';
+import 'package:agro_app/features/user/user_controller.dart';
 import 'package:agro_app/features/wheather/wheather_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +25,18 @@ class HomeScreen extends StatelessWidget {
         title: const Text("🌱 AgrowWithMe"),
         centerTitle: true,
         backgroundColor: Colors.green,
+        actions: [
+           IconButton(
+  icon: const Icon(
+    Icons.logout,
+    color: Colors.black,
+  ),
+  onPressed: () {
+    Get.find<UserController>().logout();
+  },
+),
+          
+        ],
       ),
 
       body: SingleChildScrollView(
@@ -74,6 +88,17 @@ ActionCard(
   color: Colors.red,
   onTap: () {
     Get.to(() => const DiseaseAlertScreen());
+  },
+),
+
+
+ActionCard(
+  icon: Icons.message,
+  title: "Community Discussion",
+  subtitle: "Let's help others",
+  color: Colors.red,
+  onTap: () {
+    Get.to(() => const AllDiscussionScreen());
   },
 ),
 

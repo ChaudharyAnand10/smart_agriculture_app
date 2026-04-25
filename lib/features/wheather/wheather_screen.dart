@@ -11,15 +11,29 @@ class WeatherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("🌦 Weather")),
-
+      appBar: AppBar(
+        title: const Text("🌦 Weather"),
+        centerTitle: true,
+      ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
 
         if (controller.error.isNotEmpty) {
-          return Center(child: Text(controller.error.value));
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(controller.error.value),
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: controller.fetchWeather,
+                  child: const Text("Retry"),
+                ),
+              ],
+            ),
+          );
         }
 
         if (controller.weather.value != null) {

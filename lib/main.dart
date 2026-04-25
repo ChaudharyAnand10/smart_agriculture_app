@@ -1,4 +1,5 @@
 import 'package:agro_app/features/crops/crop_screen.dart';
+import 'package:agro_app/features/splash/splash_Screen.dart';
 import 'package:agro_app/firebase_options.dart';
 import 'package:agro_app/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MainScreen(),
+      home: SplashScreen(),
     );
   }
 }
